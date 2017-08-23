@@ -1,0 +1,27 @@
+
+/*	.control-group,
+	.controls,
+	.control-label,
+	label{
+		float: left;
+		margin:  1px;
+		padding: 1px;
+		display:inline-block;
+	}*/
+
+	.hcontrols,
+	.hlabel{
+		float: left;
+		margin:  1px;
+		padding: 1px;
+		display:inline-block;
+	}
+
+
+/*#srarch-horizontal{
+		float: left;
+		margin: 0;
+		padding: 0;
+		display:inline-block;
+}*/
+
