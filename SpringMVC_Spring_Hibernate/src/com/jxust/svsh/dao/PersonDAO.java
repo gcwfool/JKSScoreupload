@@ -70,9 +70,18 @@ public class PersonDAO {
 	 * 删除
 	 * @param id
 	 */
-	public void deletePersonById(String id) {
-		this.getSession().createQuery("delete Person where id=?").setParameter(0, id).executeUpdate();
+	public boolean deletePersonById(String id) {
+		int param = Integer.parseInt(id);
+		int count = this.getSession().createQuery("delete Person where id=?").setParameter(0, param).executeUpdate();
+		if(count == 0){
+			return false;
+		}else{
+			return true;
+		}
 	}
+	
+	
+	
 	/**
 	 * 查询所有
 	 * @return

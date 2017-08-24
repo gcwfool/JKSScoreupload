@@ -49,8 +49,8 @@ public class PersonService {
 	 * 删除
 	 * @param id
 	 */
-	public void deletePersonById(String  id) {
-		personDAO.deletePersonById(id);
+	public boolean deletePersonById(String  id) {
+		return personDAO.deletePersonById(id);
 		
 	}
 	/**

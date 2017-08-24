@@ -647,12 +647,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 		        //删除
-		        $('#mydatatable tbody').on( 'click', '#delRow', function () {
-		          var data = tables.api().row($(this).parents('tr')).data();
-		                if(confirm("是否确认删除" + data.id)){
-		                    
-		                }
-		            });
+				
+				$('#mydatatable tbody').on( 'click', '#delRow', function () {
+					var data = tables.api().row($(this).parents('tr')).data();
+		            if(confirm("是否确认删除" + data.id + "这条信息?")){
+		                $.ajax({
+		                    url:"<%=basePath%>person/delete/" + data.id,
+		                    type:'delete',
+		                    dataType: "json",
+		                    //timeout:"3000",
+		                    cache:"false",
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除成功");
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除失败");
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器连接失败");
+		                    }
+		                });
+		            }
+		        });
 
 </script>
 

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.jxust.svsh.entity.Person;
 import com.jxust.svsh.service.PersonService;
 import com.jxust.util.Common;
@@ -97,12 +99,34 @@ public class PersonController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/deletePersonById")
+/*	@RequestMapping(value = "/deletePersonById")
 	public String deletePersonById(@RequestParam(value = "id") String id) {
 		System.out.println("删除单个");
 		personService.deletePersonById(id);
 		return "redirect:main";
+	}*/
+	
+	
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public Map<String,Object> delete(@PathVariable("id") String id) {
+		boolean res = personService.deletePersonById(id);
+		
+		
+		Map<String, Object> param=new HashMap<String, Object>();
+		
+		if(res == true){
+			param.put("status", 1);
+		}else{
+			param.put("status", 0);
+		}
+		
+		return param;
 	}
+	
+	
+	
 
 	/**
 	 * 跳转到更新页面，回显数据
