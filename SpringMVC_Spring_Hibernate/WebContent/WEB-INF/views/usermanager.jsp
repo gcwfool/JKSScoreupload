@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Matrix Admin</title>
 <meta charset="UTF-8" />
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/bootstrap.css" />
 <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="../css/uniform.css" />
 <link rel="stylesheet" href="../css/select2.css" />
@@ -418,7 +418,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--       </div>
   </div>  -->
   
-            <table class="table table-bordered table-striped with-check" style="height: %100;">
+            <table class="table table-bordered table-striped table-hover with-check" style="height: %100;">
               <thead>
                 <tr>
                   <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>

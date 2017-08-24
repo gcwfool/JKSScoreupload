@@ -177,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
           <div class="widget-content">
 
-            <table class="table table-bordered table-striped" id="mydatatable">
+            <table class="table table-bordered table-striped table-hover" id="mydatatable">
               <thead>
                 <tr>
                   <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
