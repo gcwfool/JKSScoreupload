@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="#" method="post" class="form-horizontal" style="margin-top: 20px; margin-left: 30px;">
                 <label class="control-label hlabel" style="width: 80px;">操作人:</label>
                 <div class="controls hcontrols"  style="width:80px; margin-left: 10px;">
-                  <input style="width: 80px;" type="Text" name="studentname" placeholder="">
+                  <input style="width: 80px;" type="text" name="studentname" placeholder="">
                 </div>
 
 

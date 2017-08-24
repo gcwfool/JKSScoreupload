@@ -115,18 +115,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               
 	              <label class="control-label hlabel" style="width: 60px;">角色名称:</label>
 	              <div class="controls"  style="width:80px; margin-bottom: 10px; margin-left: 70px;">
-	                <input style="width: 80px;" type="Text" name="juesename" >
+	                <input style="width: 80px;" type="text" name="juesename" >
 	              </div>
 
 
 	              <label class="control-label hlabel" style="width: 60px;">角色描述:</label>
 	              <div class="controls"  style="width:80px; margin-left: 70px;">
-	                <input style="width: 80px;" type="Text" name="kemuname"  title = "请输入科目名称">
+	                <input style="width: 80px;" type="text" name="kemuname"  title = "请输入科目名称">
 	              </div>			              
 
 	              <label class="control-label hlabel" style="width: 60px;">权限设置:</label>
 <!-- 	              <div class="controls"  style="width:80px; margin-left: 70px;">
-	                <input style="width: 80px;" type="Text" name="kemuscore"  title = "请输入满分成绩">
+	                <input style="width: 80px;" type="text" name="kemuscore"  title = "请输入满分成绩">
 	              </div> -->
 
 

@@ -504,9 +504,8 @@ public class PersonController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<Person> persons = personService.getPersonByPage(start, length);
-		
-		int total = persons.size();
-		map.put("recordsFiltered", length);
+		int total = personService.getCount();
+		map.put("recordsFiltered", total);
 		map.put("recordsTotal", total);
 		map.put("draw", draw);
 		map.put("data", persons);
