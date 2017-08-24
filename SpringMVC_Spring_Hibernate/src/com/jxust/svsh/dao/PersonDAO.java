@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -17,8 +16,6 @@ public class PersonDAO {
 
 	@Resource
 	private SessionFactory sessionFactory;
-	
-	private int count = 0;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
@@ -33,21 +30,19 @@ public class PersonDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Person> getPersonByPage(int start, int pageSize){
-		
+	public List<Person> getPersonByPage(int start, int pageSize){	
 		String queryStr = "from Person";
-		Query query = this.getSession().createQuery(queryStr);
-		
-		count = query.list().size();
-		
+		Query query = this.getSession().createQuery(queryStr);		
 		query.setFirstResult(start) ;
 		query.setMaxResults(pageSize); 
-		//System.out.println(query.list());
+		
 		return query.list();
 	}
 	
 	public int getCount(){
-		return count;
+		int count=((Long) this.getSession()
+                .createQuery( "select count(*) from Person").iterate().next()).intValue();
+        return count;
 	}
 	
 	
