@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <button class="btn btn-primary" data-toggle="modal" data-target="#addscoreModal"> <i class="fa fa-plus"></i> 新增</button>
               <button class="btn btn-success"  data-toggle="modal" data-target="#fileuploadModal"><i class="fa fa-upload"> </i> 导入</button>
               <button class="btn btn-info" onclick="download()"><i class="fa fa-share"> </i> 导出</button>
-              <button class="btn btn-warning" onclick="deleterows()"><i class="fa fa-times"> </i> 删除</button>
+              <button class="btn btn-danger" onclick="deleterows()"><i class="fa fa-times"> </i> 删除</button>
             </p>
 
 	    </div>
