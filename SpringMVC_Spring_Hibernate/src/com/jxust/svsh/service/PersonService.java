@@ -22,8 +22,8 @@ public class PersonService {
 	 * 添加
 	 * @param person
 	 */
-	public void addPerson(Person person) {
-		personDAO.addPerson(person);
+	public boolean addPerson(Person person) {
+		return personDAO.addPerson(person);
 	}
 	/**
 	 * 根据id查询
@@ -42,8 +42,8 @@ public class PersonService {
 	 * 更新
 	 * @param person
 	 */
-	public void updatePerson(Person person) {
-		personDAO.updatePerson(person);
+	public boolean updatePerson(Person person) {
+		return personDAO.updatePerson(person);
 	}
 	/**
 	 * 删除
@@ -53,6 +53,13 @@ public class PersonService {
 		return personDAO.deletePersonById(id);
 		
 	}
+	
+	
+	public boolean deletePersonsById(String[]  ids) {
+		return personDAO.deletePersonsById(ids);
+		
+	}
+	
 	/**
 	 * 查询所有
 	 * @return

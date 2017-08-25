@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,9 +78,21 @@ public class PersonController {
 	 * @return
 	 */
 	@RequestMapping(value = "/saveperson")
-	public String saveperson(Person person) {
-		personService.addPerson(person);
-		return "redirect:main";
+	@ResponseBody
+	public Map<String,Object> saveperson(Person person) {
+		
+		boolean res = personService.addPerson(person);
+		
+		
+		Map<String, Object> param=new HashMap<String, Object>();
+		
+		if(res == true){
+			param.put("status", 1);
+		}else{
+			param.put("status", 0);
+		}
+		
+		return param;
 	}
 
 	/**
@@ -127,6 +140,24 @@ public class PersonController {
 	
 	
 	
+	@RequestMapping(value = "/deleterows")
+	@ResponseBody
+	public Map<String,Object> deleterows(@RequestParam(value = "ids") String[] ids) {
+		boolean res = personService.deletePersonsById(ids);
+//		boolean res = false;
+		
+		Map<String, Object> param=new HashMap<String, Object>();
+		
+		if(res == true){
+			param.put("status", 1);
+		}else{
+			param.put("status", 0);
+		}
+		
+		return param;
+	}
+	
+	
 
 	/**
 	 * 跳转到更新页面，回显数据
@@ -148,10 +179,20 @@ public class PersonController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updateperson")
-	public String updateperson(Person person) {
+	@ResponseBody
+	public Map<String,Object>  updateperson(Person person) {
 		System.out.println(person.toString());
-		personService.updatePerson(person);
-		return "redirect:main";
+		boolean res = personService.updatePerson(person);
+		Map<String, Object> param=new HashMap<String, Object>();
+		
+		if(res == true){
+			param.put("status", 1);
+		}else{
+			param.put("status", 0);
+		}
+		
+		return param;
+		
 	}
 
 	/**
