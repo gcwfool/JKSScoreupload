@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -50,24 +51,64 @@ public class PersonDAO {
 	 * 添加
 	 * @param person
 	 */
-	public void addPerson(Person person) {
+	public boolean addPerson(Person person) {
 		//this.getSession().save(person);
-		this.getSession().saveOrUpdate(person);
+		
+		
+		try{
+			this.getSession().saveOrUpdate(person);
+			return true;
+		}catch(HibernateException e){
+			return false;
+		}
+		
 	}
 	/**
 	 * 更新
 	 * @param person
 	 */
-	public void updatePerson(Person person) {
-		this.getSession().update(person);
+	public boolean updatePerson(Person person) {
+		
+		try{
+			this.getSession().update(person);
+			return true;
+		}catch(HibernateException e){
+			return false;
+		}
+		
+		
 	}
 	/**
 	 * 删除
 	 * @param id
 	 */
-	public void deletePersonById(String id) {
-		this.getSession().createQuery("delete Person where id=?").setParameter(0, id).executeUpdate();
+	public boolean deletePersonById(String id) {
+		int param = Integer.parseInt(id);
+		int count = this.getSession().createQuery("delete Person where id=?").setParameter(0, param).executeUpdate();
+		if(count == 0){
+			return false;
+		}else{
+			return true;
+		}
 	}
+	
+	public boolean deletePersonsById(String[] ids) {
+		
+		int count = 0;
+		
+		for(int i = 0; i < ids.length; i++){
+			int param = Integer.parseInt(ids[i]);
+			count += this.getSession().createQuery("delete Person where id=?").setParameter(0, param).executeUpdate();
+		}
+		
+
+		if(count == ids.length){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	/**
 	 * 查询所有
 	 * @return

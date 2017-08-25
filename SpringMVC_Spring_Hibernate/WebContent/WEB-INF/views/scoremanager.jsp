@@ -66,11 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			window.open(url);
 		}
 
-		function deleterows(){
-			if(confirm("确认删除所勾选项?")){
 
-			}
-		}
 	</script>
 </head>
 
@@ -92,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="row-fluid">
 
 	    	<p>              
-              <button class="btn btn-primary" data-toggle="modal" data-target="#addscoreModal"> <i class="fa fa-plus"></i> 新增</button>
+              <button class="btn btn-primary" onclick="showaddmodal()"> <i class="fa fa-plus"></i> 新增</button>
               <button class="btn btn-success"  data-toggle="modal" data-target="#fileuploadModal"><i class="fa fa-upload"> </i> 导入</button>
               <button class="btn btn-info" onclick="download()"><i class="fa fa-share"> </i> 导出</button>
               <button class="btn btn-danger" onclick="deleterows()"><i class="fa fa-times"> </i> 删除</button>
@@ -274,9 +270,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-<div class="modal hide fade" id="addscoreModal"">
+<div class="modal hide fade" id="addModal"">
 
-	  <div class="modal-body" >
+	  <div class="modal-body" style="max-height: 500px;">
 
 
 			<div id = "content">
@@ -291,7 +287,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				          
 					<div class="widget-content">
 
-						<form action="#" >
+						
 							
 								<label class="control-label hlabel" style="width: 60px;">所属考试:</label>
 							    <div class="controls" style="width:300px; margin-bottom: 10px; margin-left: 70px;">
@@ -344,28 +340,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						      </div>
 
 
-
+					<form id="addform">
 
 				              <label class="control-label hlabel" style="width: 60px;">学生编号:</label>
 				              <div class="controls"  style="width:80px; margin-bottom: 10px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="studentid"  title = "请输入编号" placeholder="请输入编号">
+				                <input style="width: 80px;" type="Text" name="id"  title = "请输入编号" placeholder="请输入编号">
 				              </div>
 
+				              <label class="control-label hlabel" style="width: 60px;">学生姓名:</label>
+				              <div class="controls"  style="width:80px; margin-bottom: 10px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="name"  title = "请输入姓名" placeholder="请输入姓名">
+				              </div>
 
 				              <label class="control-label hlabel" style="width: 60px;">语  文:</label>
 				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="yuwen"  title = "请输入语文成绩">
+				                <input style="width: 80px;" type="Text" name="chinese"  title = "请输入语文成绩" value="0">
 				              </div>			              
 
 				              <label class="control-label hlabel" style="width: 60px;">数学:</label>
 				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="yuwen"  title = "请输入数学成绩">
+				                <input style="width: 80px;" type="Text" name="math"  title = "请输入数学成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">英语:</label>
 				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="yuwen"  title = "请输入英语成绩">
+				                <input style="width: 80px;" type="Text" name="english"  title = "请输入英语成绩" value="0">
 				              </div>	  
+
+				            	<label class="control-label hlabel" style="width: 60px;">物理:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="physics"  title = "请输入物理成绩" value="0">
+				              </div>	
+
+				            	<label class="control-label hlabel" style="width: 60px;">化学:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="chemistry"  title = "请输入化学成绩" value="0">
+				              </div>	
+
+				            	<label class="control-label hlabel" style="width: 60px;">思想品德:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="sxpd"  title = "请输入思想品德成绩" value="0">
+				              </div>	
+
+				            	<label class="control-label hlabel" style="width: 60px;">历史:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="history"  title = "请输入历史成绩" value="0">
+				              </div>	
+
+				            	<label class="control-label hlabel" style="width: 60px;">地理:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="geography"  title = "请输入地理成绩" value="0">
+				              </div>	
+
+
+				            	<label class="control-label hlabel" style="width: 60px;">生物:</label>
+				              <div class="controls"  style="width:80px; margin-left: 70px;">
+				                <input style="width: 80px;" type="Text" name="biology"  title = "请输入生物成绩" value="0">
+				              </div>	
 
 
 						</form>
@@ -384,7 +415,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <div class="modal-footer">
      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-    <a href="#" class="btn btn-primary">新增</a>
+    <a href="#" class="btn btn-primary" onclick="add()">新增</a>
   </div>
 </div>
 
@@ -410,62 +441,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   
           <div class="widget-content">
 
-            <form action="#" >
+            <form id = "editform">
               
                 <label class="control-label hlabel" style="width: 60px;">学号:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name="editidinput"  type="text"  value="">
+                  <input name="id"  type="text"  value="">
                 </div>                    
 
                 <label class="control-label hlabel" style="width: 60px;">姓名:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editnameinput"  type="text"  value="">
+                  <input name = "name"  type="text"  value="">
                 </div>
 
 
                 <label class="control-label hlabel" style="width: 60px;">语文:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editchineseinput"  type="text"  value="">
+                  <input name = "chinese"  type="text"  value="">
                 </div>
 
                 <label class="control-label hlabel" style="width: 60px;">数学:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editmathinput"  type="text"  value="">
+                  <input name = "math"  type="text"  value="">
                 </div>                
 
                 <label class="control-label hlabel" style="width: 60px;">英语:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editenglishinput"  type="text"  value="">
+                  <input name = "english"  type="text"  value="">
                 </div>
 
                 <label class="control-label hlabel" style="width: 60px;">物理:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editphysicsinput"  type="text"  value="">
+                  <input name = "physics"  type="text"  value="">
                 </div>
 
                 <label class="control-label hlabel" style="width: 60px;">化学:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editchemistryinput"  type="text"  value="">
+                  <input name = "chemistry"  type="text"  value="">
                 </div>
 
                 <label class="control-label hlabel" style="width: 60px;">思想品德:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editsxpdinput"  type="text"  value="">
+                  <input name = "sxpd"  type="text"  value="">
                 </div>
 
                 <label class="control-label hlabel" style="width: 60px;">历史:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "edithistoryinput"  type="text"  value="">
+                  <input name = "history"  type="text"  value="">
                 </div>         
 
                 <label class="control-label hlabel" style="width: 60px;">地理:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editgeographyinput"  type="text"  value="">
+                  <input name = "geography"  type="text"  value="">
                 </div>     
 
                 <label class="control-label hlabel" style="width: 60px;">生物:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
-                  <input name = "editbiologyinput"  type="text"  value="">
+                  <input name = "biology"  type="text"  value="">
                 </div>   
 
 
@@ -492,7 +523,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <div class="modal-footer">
      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-    <a href="#" class="btn btn-primary">修改</a>
+    <a href="#" class="btn btn-primary" onclick= "edit()">修改</a>
   </div>
 </div>
 
@@ -505,7 +536,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-<script src="../js/jquery.min.js"></script> 
+<script src="../js/jquery-1.7.2.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
 <script src="../js/jquery.uniform.js"></script> 
@@ -626,18 +657,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        $('#mydatatable tbody').on( 'click', '#editRow', function () {
 		          var data = tables.api().row($(this).parents('tr')).data();
 		          
-		          $("input[name=editidinput]").val(data.id)
-		          $("input[name=editnameinput]").attr("value", data.name);
-		          $("input[name=editchineseinput]").attr("value", data.chinese);
-		          $("input[name=editmathinput]").attr("value", data.math);
-		          $("input[name=editenglishinput]").attr("value", data.english);
+		          // $("input[name=id]").val(data.id)
+		          $("#editform input[name=id]").attr("value", data.id);
+		          $("#editform input[name=name]").attr("value", data.name);
+		          $("#editform input[name=chinese]").attr("value", data.chinese);
+		          $("#editform input[name=math]").attr("value", data.math);
+		          $("#editform input[name=english]").attr("value", data.english);
 		          
-		          $("input[name=editphysicsinput]").attr("value", data.physics);
-		          $("input[name=editchemistryinput]").attr("value", data.chemistry);
-		          $("input[name=editsxpdinput]").attr("value", data.sxpd);
-		          $("input[name=edithistoryinput]").attr("value", data.history);
-		          $("input[name=editgeographyinput]").attr("value", data.geography);
-		          $("input[name=editbiologyinput]").attr("value", data.biology);
+		          $("#editform input[name=physics]").attr("value", data.physics);
+		          $("#editform input[name=chemistry]").attr("value", data.chemistry);
+		          $("#editform input[name=sxpd]").attr("value", data.sxpd);
+		          $("#editform input[name=history]").attr("value", data.history);
+		          $("#editform input[name=geography]").attr("value", data.geography);
+		          $("#editform input[name=biology]").attr("value", data.biology);
 		 
 		          
 		          $("#editModal").modal("show");
@@ -646,13 +678,164 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-		        //删除
-		        $('#mydatatable tbody').on( 'click', '#delRow', function () {
-		          var data = tables.api().row($(this).parents('tr')).data();
-		                if(confirm("是否确认删除" + data.id)){
-		                    
-		                }
-		            });
+		        //删除单行
+				
+				$('#mydatatable tbody').on( 'click', '#delRow', function () {
+					var data = tables.api().row($(this).parents('tr')).data();
+		            if(confirm("是否确认删除" + data.id + "这条信息?")){
+		                $.ajax({
+		                    url:"<%=basePath%>person/delete/" + data.id,
+		                    type:'delete',
+		                    dataType: "json",
+		                    //timeout:"3000",
+		                    cache:"false",
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除成功");
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除失败");
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器连接失败");
+		                    }
+		                });
+		            }
+		        });
+
+
+				//删除多行
+				function deleterows(){
+					if(confirm("确认删除所勾选项?")){
+						var rows = [];
+						$('#mydatatable tbody tr').each(function(){
+/*							if($(this).find("checkbox").attr("checked") == true){
+								alert("in");*/
+								// rows.add($(this));
+
+								var tds = $(this).find("td");
+								if(tds.find("input").attr("checked") == "checked"){
+									rows.push(tds[1].outerText);
+								}
+								
+								// console.log($(this).find("input").attr("checked"));
+
+							
+						});
+						if(rows.length != 0){
+							$.ajax({
+		                    url:"<%=basePath%>person/deleterows",
+		                    data: {
+		                    	"ids": rows
+		                    },
+		                    traditional: true,
+		                    type:'post',
+		                    dataType: "json",
+		                    //timeout:"3000",
+		                    cache:"false",
+		                    // contentType: "application/json; charset=utf-8",
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除成功");
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("删除失败");
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器出错");
+		                    }
+		                });
+						}
+					}
+				}
+
+
+				function edit(){
+							$.ajax({
+		                    url:"<%=basePath%>person/updateperson",
+		                    data: $('#editform').serialize(),
+		                    // traditional: true,
+		                    type:'post',
+		                    dataType: "json",
+		                    //timeout:"3000",
+		                    cache:"false",
+		                    // contentType: "application/json; charset=utf-8",
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("修改成功");
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("修改失败");
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器出错");
+		                    }
+		                });
+				}
+
+
+
+
+				function showaddmodal(){
+					$("#addModal").modal("show");
+				}
+
+				function add(){
+
+						
+
+							$.ajax({
+		                    url:"<%=basePath%>person/saveperson",
+		                    data: $('#addform').serialize(),
+		                    // traditional: true,
+		                    type:'post',
+		                    dataType: "json",
+		                    //timeout:"3000",
+		                    cache:"false",
+		                    // contentType: "application/json; charset=utf-8",
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("新增成功");
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("新增失败");
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器出错");
+		                    }
+		                });
+				}				
+
+
+
 
 </script>
 
