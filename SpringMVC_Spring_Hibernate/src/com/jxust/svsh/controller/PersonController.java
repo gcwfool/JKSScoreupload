@@ -433,6 +433,294 @@ public class PersonController {
         return "scoremanager"; 
     }
 	
+	
+	
+	
+	/**
+	 * 描述：通过 jquery.form.js 插件提供的ajax方式上传文件
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "ajaxUpload.action", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public Map<String, Object> ajaxUploadExcel(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		System.out.println("通过 jquery.form.js 提供的ajax方式上传文件！");
+		
+		Map<String, Object> param = new HashMap<String, Object>();
+		
+		
+
+		InputStream in = null;
+		List<List<Object>> listob = null;
+		MultipartFile file = multipartRequest.getFile("upfile");
+		if (file.isEmpty()) {
+			throw new Exception("文件不存在！");
+		}
+
+		in = file.getInputStream();
+		listob = new ImportExcelUtil().getBankListByExcel(in,
+				file.getOriginalFilename());
+
+		in.close();
+		
+        String outputMsg = "";
+        boolean success = true;
+        
+        List<Object> first = listob.get(0);
+        if(first.size() < 10 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("语文") || 
+        		!first.get(3).equals("数学") || !first.get(4).equals("英语") || !first.get(5).equals("物理") || 
+        		!first.get(6).equals("化学") || !first.get(7).equals("思想品德") || !first.get(8).equals("历史") || 
+        		!first.get(9).equals("地理") || !first.get(10).equals("生物") ) {
+        	
+        	param.put("status", 0);
+        	param.put("msg", "首行标题格式错误，请参照模板");
+        	return param;
+        	
+/*        	model.addAttribute("msg", "首行标题格式错误，请参照模板");
+        	return "scoreerror";
+*/        }
+//        if(first.size() != 11) {
+//        	throw new Exception("首行标题错误！");
+//        }
+        
+        
+        //先检查一遍
+        for (int i = 1; i < listob.size(); i++) {  
+            List<Object> lo = listob.get(i);  
+            String id = String.valueOf(lo.get(0));
+            String name = String.valueOf(lo.get(1));
+            String chinese = String.valueOf(lo.get(2));
+            String math = String.valueOf(lo.get(3));
+            String english = String.valueOf(lo.get(4));
+            String physics = String.valueOf(lo.get(5));
+            String chemistry = String.valueOf(lo.get(6));
+            String sxpd = String.valueOf(lo.get(7));
+            String history = String.valueOf(lo.get(8));
+            String geography = String.valueOf(lo.get(9));
+            String biology = String.valueOf(lo.get(10));
+            String errorMsg = "";
+            if(id.length() != 7 || !Common.isNumeric(id)) {
+            	errorMsg += "第" + (i + 1) + "行学号格式错误";
+            	errorMsg += "\n";
+            	success = false;
+            }
+            
+            if(name == null || name.length() == 0) {
+            	System.out.println("第" + (i + 1) + "行名字不能为空");
+            	errorMsg += "第" + (i + 1) + "行名字不能为空";
+            	errorMsg += "\n";
+            	success = false;
+            }
+            
+            if(!Common.isNumeric(chinese)) {
+            	System.out.println("第" + (i + 1) + "行语文分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行语文分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(chinese);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行语文分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行语文分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(math)) {
+            	System.out.println("第" + (i + 1) + "行数学分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行数学分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(math);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行数学分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行数学分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(english)) {
+            	System.out.println("第" + (i + 1) + "行英语分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行英语分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(english);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行英语分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行英语分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(physics)) {
+            	System.out.println("第" + (i + 1) + "行物理分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行物理分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(physics);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行物理分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行物理分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(chemistry)) {
+            	System.out.println("第" + (i + 1) + "行化学分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行化学分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(chemistry);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行化学分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行化学分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(sxpd)) {
+            	System.out.println("第" + (i + 1) + "行思想品德分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行思想品德分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(sxpd);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行思想品德分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行思想品德分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(history)) {
+            	System.out.println("第" + (i + 1) + "行历史分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行历史分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(history);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行历史分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行历史分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(geography)) {
+            	System.out.println("第" + (i + 1) + "行地理分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行地理分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(geography);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行地理分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行地理分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!Common.isNumeric(biology)) {
+            	System.out.println("第" + (i + 1) + "行生物分数只能是数字");
+            	errorMsg += "第" + (i + 1) + "行生物分数只能是数字";
+            	errorMsg += "\n";
+            	success = false;
+            }else {
+            	int num = Integer.valueOf(biology);
+            	if(num < 0 || num > 100) {
+            		System.out.println("第" + (i + 1) + "行生物分数超出范围");
+            		errorMsg += "第" + (i + 1) + "行生物分数超出范围";
+                	errorMsg += "\n";
+            		success = false;
+            	}
+            }
+            
+            if(!success) {
+            	/*model.addAttribute("msg", errorMsg);
+            	return "scoreerror";*/
+            	param.put("status", 0);
+            	param.put("msg", errorMsg);
+            	return param;
+            }
+
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+        //该处可调用service相应方法进行数据保存到数据库中，现只对数据输出  
+        for (int i = 1; i < listob.size(); i++) {  
+            List<Object> lo = listob.get(i);  
+            String id = String.valueOf(lo.get(0));
+            String name = String.valueOf(lo.get(1));
+            String chinese = String.valueOf(lo.get(2));
+            String math = String.valueOf(lo.get(3));
+            String english = String.valueOf(lo.get(4));
+            String physics = String.valueOf(lo.get(5));
+            String chemistry = String.valueOf(lo.get(6));
+            String sxpd = String.valueOf(lo.get(7));
+            String history = String.valueOf(lo.get(8));
+            String geography = String.valueOf(lo.get(9));
+            String biology = String.valueOf(lo.get(10));
+            String errorMsg = "";
+
+            
+
+            try {
+            	personService.addPerson(new Person(Integer.valueOf(id), name, Integer.valueOf(chinese), Integer.valueOf(math)
+            			, Integer.valueOf(english), Integer.valueOf(physics),Integer.valueOf(chemistry),Integer.valueOf(sxpd),
+            			Integer.valueOf(history), Integer.valueOf(geography), Integer.valueOf(biology)));
+            } catch (Exception e){
+            	/*System.out.println("第" + (i + 1) + "行插入错误");
+            	return "scoreerror";*/
+            	param.put("status", 0);
+            	param.put("msg", "第" + (i + 1) + "行插入错误");
+            	return param;
+            }
+        }
+        
+        param.put("status", 1);
+        param.put("msg", "成功插入" + (listob.size() - 1) +"行");
+        
+        System.out.print(outputMsg);
+		return param;
+
+	}	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/createName.do")
 	public void createName() {
 		String[] firsname = { "赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈",

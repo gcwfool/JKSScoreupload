@@ -237,7 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="widget-box">
 	          
 		<div class="widget-content">
-			<form method="POST"  enctype="multipart/form-data" id="form_upload" action="upload.do"> 
+			<form method="POST"  enctype="multipart/form-data" id="form_upload" action="#"> 
 				<label class="control-label" style="width: 60px;">所属考试:</label>
 		      <div class="controls" style="width:300px; margin-bottom: 10px;">
 		        <select>
@@ -263,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <div class="modal-footer">
      <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-     <input type="submit" class="btn btn-primary" value="提交" onclick="return checkData()">
+     <input type="button" class="btn btn-primary" value="提交" name="btn" id="btn">
   </div>
 </div>
 
@@ -559,6 +559,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../js/masked.js"></script> 
 <script src="../js/matrix.form_common.js"></script> 
 <script src="../js/jquery.peity.min.js"></script> 
+<script src="../js/jquery.form.js"></script>
 
 <script type="text/javascript">
 
@@ -921,7 +922,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            $(this).triggerHandler("blur");
 		        }).focus(function(){
 		            $(this).triggerHandler("blur");
-		        });		        			
+		        });	
+
+
+
+				$('#btn').click(function() {
+
+			         var fileDir = $("#upfile").val();  
+			         var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+			         if("" == fileDir){  
+			             alert("选择需要导入的Excel文件！");  
+			             return false;  
+			         }  
+			         if(".xls" != suffix && ".xlsx" != suffix ){  
+			             alert("选择Excel格式的文件导入！");  
+			             return false;  
+			         }		
+			         
+
+
+					if (true) {
+						$('#form_upload').ajaxSubmit({
+							url : "<%=basePath%>person/ajaxUpload.action",
+							dataType : 'json',
+
+		                    success:function(res){
+		                        if(res.status == 1){
+		                        	//var $toast = toastr['info']('<sp:message code='sys.oper.success'/>');
+		                        	// toastr.success("<sp:message code='sys.oper.success'/>");
+		                        	alert("上传成功:" + res.msg);
+		                        	tables.api().row().remove().draw(false);//删除这行的数据
+		                        	//tables.fnDraw();
+		                            //window.location.reload();//重新刷新页面，还有一种方式：tables.draw(false);(这是不刷新，重新初始化插件，但是做删除时候，老有问题)
+		                        }else{
+		                        	// toastr.error("<sp:message code='sys.oper.success'/>");
+		                        	alert("上传失败:" + res.msg);
+		                        }
+		                    },
+		                    error:function(err){
+		                    	// toastr.error("Server Connection Error...");
+		                    	alert("服务器出错");
+		                    }							
+
+						});
+
+					}
+				});		        	        			
 
 
 /*				$(function(){
