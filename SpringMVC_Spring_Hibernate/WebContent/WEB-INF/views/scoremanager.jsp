@@ -34,6 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		display:inline-block;
 	}
 
+
+	.high{ color: red; }
+    .msg{ font-size: 13px; }
+    .onError{ color: red; }
+    .onSuccess{ color: green; }
+
 /*#srarch-horizontal{
 		float: left;
 		margin: 0;
@@ -343,59 +349,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form id="addform">
 
 				              <label class="control-label hlabel" style="width: 60px;">学生编号:</label>
-				              <div class="controls"  style="width:80px; margin-bottom: 10px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="id"  title = "请输入编号" placeholder="请输入编号">
+				              <div class="controls"  style="width:400px; margin-bottom: 10px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="id" id="id" title = "请输入编号" placeholder="请输入编号">
 				              </div>
 
 				              <label class="control-label hlabel" style="width: 60px;">学生姓名:</label>
-				              <div class="controls"  style="width:80px; margin-bottom: 10px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="name"  title = "请输入姓名" placeholder="请输入姓名">
+				              <div class="controls"  style="width:400px; margin-bottom: 10px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="name" id="name" title = "请输入姓名" placeholder="请输入姓名">
 				              </div>
 
 				              <label class="control-label hlabel" style="width: 60px;">语  文:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="chinese"  title = "请输入语文成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="chinese" id="chinese" title = "请输入语文成绩" value="0">
 				              </div>			              
 
 				              <label class="control-label hlabel" style="width: 60px;">数学:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="math"  title = "请输入数学成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="math" id="math" title = "请输入数学成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">英语:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="english"  title = "请输入英语成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="english" id="english" title = "请输入英语成绩" value="0">
 				              </div>	  
 
 				            	<label class="control-label hlabel" style="width: 60px;">物理:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="physics"  title = "请输入物理成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="physics" id="physics" title = "请输入物理成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">化学:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="chemistry"  title = "请输入化学成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="chemistry" id="chemistry" title = "请输入化学成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">思想品德:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="sxpd"  title = "请输入思想品德成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="sxpd" id="sxpd" title = "请输入思想品德成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">历史:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="history"  title = "请输入历史成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="history" id="history" title = "请输入历史成绩" value="0">
 				              </div>	
 
 				            	<label class="control-label hlabel" style="width: 60px;">地理:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="geography"  title = "请输入地理成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="geography" id="geography" title = "请输入地理成绩" value="0">
 				              </div>	
 
 
 				            	<label class="control-label hlabel" style="width: 60px;">生物:</label>
-				              <div class="controls"  style="width:80px; margin-left: 70px;">
-				                <input style="width: 80px;" type="Text" name="biology"  title = "请输入生物成绩" value="0">
+				              <div class="controls"  style="width:400px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="biology" id="biology" title = "请输入生物成绩" value="0">
 				              </div>	
 
 
@@ -803,7 +809,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				function add(){
 
-						
+							// var id = $("#addform input[name=id]").attr("value");
+
+				            $("addform .required:input").trigger("blur"); 
+				            var numError = $("form .onError").length;
+				            if(numError){
+				                return false;
+				            }							
+
 
 							$.ajax({
 		                    url:"<%=basePath%>person/saveperson",
@@ -832,7 +845,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    	alert("服务器出错");
 		                    }
 		                });
-				}				
+				}		
+
+
+
+
+		        $("form :input.required").each(function(){ 
+		            //创建元素
+		            var $required = $("<strong  class='high'>*</strong>");
+		            //将它追加到文档中
+		            $(this).parent().append($required);
+		        });	
+
+
+
+		        //为表单的必填文本框添加相关事件（blur、focus、keyup）
+		        $("form :input").blur(function(){
+		            //注意：这里的this是DOM对象，$(this)才是jQuery对象
+		            var $parent = $(this).parent();
+		            //删除之前的错误提醒信息
+		            $parent.find(".msg").remove();
+		            //验证“id”
+		            if($(this).is("#id")){
+		                //运用jQuery中的$.trim()方法，去掉首位空格
+		                if($.trim(this.value) == "" || $.trim(this.value).length < 6){
+		                    var errorMsg = " 请输入至少6位的名称！";
+		                    //class='msg onError' 中间的空格是层叠样式的格式
+		                    $parent.append("<span class='msg onError'>" + errorMsg + "</span>"); 
+		                }
+		                else{
+		                    var okMsg="  √";
+		                    $parent.find(".high").remove();
+		                    $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+		                }                
+		            }
+
+		            if($(this).is("#name")){
+		                //运用jQuery中的$.trim()方法，去掉首位空格
+		                if($.trim(this.value) == "" || $.trim(this.value).length == 0){
+		                    var errorMsg = " 姓名不能为空！";
+		                    //class='msg onError' 中间的空格是层叠样式的格式
+		                    $parent.append("<span class='msg onError'>" + errorMsg + "</span>"); 
+		                }
+		                else{
+		                    var okMsg="  √";
+		                    $parent.find(".high").remove();
+		                    $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+		                }                
+		            }
+
+
+		            if($(this).is("#chinese")){
+		                //运用jQuery中的$.trim()方法，去掉首位空格
+		                if($.trim(this.value) == ""){
+		                    var errorMsg = " 姓名不能为空！";
+		                    //class='msg onError' 中间的空格是层叠样式的格式
+		                    $parent.append("<span class='msg onError'>" + errorMsg + "</span>"); 
+		                }else if(isNaN(this.value)){
+		                	var errorMsg = " 请输入0~100内的数字!";
+		                	$parent.append("<span class='msg onError'>" + errorMsg + "</span>"); 
+		                }else if(+this.value < 0 || +this.value > 100){
+		                	var errorMsg = " 请输入0~100内的数字!";
+		                	$parent.append("<span class='msg onError'>" + errorMsg + "</span>"); 
+		                }
+		                else{
+		                    var okMsg="  √";
+		                    $parent.find(".high").remove();
+		                    $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+		                }                
+		            }
+
+		            
+		        }).keyup(function(){
+		            //triggerHandler 防止事件执行完后，浏览器自动为标签获得焦点
+		            $(this).triggerHandler("blur");
+		        }).focus(function(){
+		            $(this).triggerHandler("blur");
+		        });		        			
+
+
+/*				$(function(){
+					$("#addform").validate({
+						rules:{
+							id:{
+								required:true,
+								minlength:4
+							},
+						message:{
+							id:{
+								required:"hehhe",
+								minlength:"hahha"
+							}
+						}
+						}
+					});
+				});	*/
 
 
 
