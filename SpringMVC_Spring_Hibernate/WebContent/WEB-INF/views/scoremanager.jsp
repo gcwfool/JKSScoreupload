@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       }  
 	 
 		function download() {
-			var url = "export.do";
+			var url = "exportZip.do";
 			window.open(url);
 		}
 

@@ -4,6 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -11,7 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
+import java.util.zip.ZipOutputStream;
 
+import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,11 +33,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.jxust.svsh.entity.Person;
 import com.jxust.svsh.service.PersonService;
 import com.jxust.util.Common;
+import com.jxust.util.DownloadZipUtil;
 import com.jxust.util.ImportExcelUtil;
+import com.sun.java.accessibility.util.java.awt.ButtonTranslator;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 
 //import com.jxust.svsh.entity.Person;
@@ -239,7 +245,7 @@ public class PersonController {
         boolean success = true;
         
         List<Object> first = listob.get(0);
-        if(first.size() < 10 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("学校") || !first.get(3).equals("语文") || 
+        if(first.size() < 11 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("学校") || !first.get(3).equals("语文") || 
         		!first.get(4).equals("数学") || !first.get(5).equals("英语") || !first.get(6).equals("物理") || 
         		!first.get(7).equals("化学") || !first.get(8).equals("思想品德") || !first.get(9).equals("历史") || 
         		!first.get(10).equals("地理") || !first.get(11).equals("生物") ) {
@@ -479,7 +485,7 @@ public class PersonController {
         boolean success = true;
         
         List<Object> first = listob.get(0);
-        if(first.size() < 10 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("学校") || !first.get(3).equals("语文") || 
+        if(first.size() < 11 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("学校") || !first.get(3).equals("语文") || 
         		!first.get(4).equals("数学") || !first.get(5).equals("英语") || !first.get(6).equals("物理") || 
         		!first.get(7).equals("化学") || !first.get(8).equals("思想品德") || !first.get(9).equals("历史") || 
         		!first.get(10).equals("地理") || !first.get(11).equals("生物") ) {
@@ -521,6 +527,12 @@ public class PersonController {
             if(name == null || name.length() == 0) {
             	System.out.println("第" + (i + 1) + "行名字不能为空");
             	errorMsg += "第" + (i + 1) + "行名字不能为空";
+            	errorMsg += "\n";
+            	success = false;
+            }
+            
+            if(school == null || school.length() == 0) {
+            	errorMsg += "第" + (i + 1) + "行学校不能为空";
             	errorMsg += "\n";
             	success = false;
             }
@@ -666,9 +678,7 @@ public class PersonController {
             	param.put("status", 0);
             	param.put("msg", errorMsg);
             	return param;
-            }
-
-            
+            } 
         }
             
         //该处可调用service相应方法进行数据保存到数据库中，现只对数据输出  
@@ -707,13 +717,7 @@ public class PersonController {
         System.out.print(outputMsg);
 		return param;
 
-	}	
-	
-	
-	
-	
-	
-	
+	}		
 	
 	@RequestMapping(value = "/createName.do")
 	public void createName() {
@@ -889,12 +893,12 @@ public class PersonController {
 	public String download(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		String fileName = "excel文件";
-		// 填充projects数据
+		
 		List<Person> projects = personService.getPersons();
 		List<Map<String, Object>> list = createExcelRecord(projects);
 		String columnNames[] = { "学号", "姓名", "学校","语文", "数学", "英语", "物理", "化学", "思想品德", "历史"
 				, "地理", "生物"};// 列名
-		String keys[] = { "id", "name", "schole", "chinese", "math", "english", "physics", "chemistry", "sxpd"
+		String keys[] = { "id", "name", "school", "chinese", "math", "english", "physics", "chemistry", "sxpd"
 				, "history", "geography", "biology"};// map中的key
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
@@ -902,16 +906,18 @@ public class PersonController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		byte[] content = os.toByteArray();
 		InputStream is = new ByteArrayInputStream(content);
+		
 		// 设置response参数，可以打开下载页面
 		response.reset();
 		response.setContentType("application/vnd.ms-excel;charset=utf-8");
 		response.setHeader("Content-Disposition", "attachment;filename="
 				+ new String((fileName + ".xls").getBytes(), "iso-8859-1"));
 		ServletOutputStream out = response.getOutputStream();
-		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
+		BufferedInputStream bis = null;
 		try {
 			bis = new BufferedInputStream(is);
 			bos = new BufferedOutputStream(out);
@@ -929,7 +935,64 @@ public class PersonController {
 			if (bos != null)
 				bos.close();
 		}
-		return "scoremanager";
+		return null;
 	}
+	
+	@RequestMapping(value = "/exportZip.do")
+	public String downloadZip(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		String fileName = "zip文件";
+		String [] schools = {"铁一中", "二中"};
+		List<BufferedInputStream> inputStreams = new ArrayList<BufferedInputStream>();
 		
+		for(int i = 0; i < schools.length; i++) {
+			List<Person> projects = personService.getPersonsBySchool(schools[i]);
+			List<Map<String, Object>> list = createExcelRecord(projects);
+			String columnNames[] = { "学号", "姓名", "学校","语文", "数学", "英语", "物理", "化学", "思想品德", "历史"
+					, "地理", "生物"};// 列名
+			String keys[] = { "id", "name", "school", "chinese", "math", "english", "physics", "chemistry", "sxpd"
+					, "history", "geography", "biology"};// map中的key
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			try {
+				ImportExcelUtil.createWorkBook(list, keys, columnNames).write(os);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			byte[] content = os.toByteArray();
+			InputStream is = new ByteArrayInputStream(content);
+			BufferedInputStream bis = new BufferedInputStream(is);
+			inputStreams.add(bis);
+		}
+		
+		// 设置response参数，可以打开下载页面
+		response.reset();
+		response.setContentType("application/vnd.ms-excel;charset=utf-8");
+		response.setHeader("Content-Disposition", "attachment;filename="
+				+ new String((fileName + ".zip").getBytes(), "iso-8859-1"));
+		ServletOutputStream out = response.getOutputStream();
+		
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		
+		try {
+			bos = new BufferedOutputStream(out);
+			// Simple read/write loop.
+			ZipOutputStream toClient = new ZipOutputStream(bos);
+			
+			DownloadZipUtil.zipFile(inputStreams, schools, toClient);
+			
+			toClient.close();
+		} catch (ServletException e) {
+			System.out.println("ServletException e");
+			e.printStackTrace();
+		} finally {
+			if (bis != null)
+				bis.close();
+			if (bos != null)
+				bos.close();
+			
+		}
+		return null;
+	}
+	
 }

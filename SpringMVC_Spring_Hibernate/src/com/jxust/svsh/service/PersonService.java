@@ -68,6 +68,14 @@ public class PersonService {
 		return personDAO.getPersons();
 	}
 	
+	/**
+	 * 查询所有
+	 * @return
+	 */
+	public List<Person> getPersonsBySchool(String school) {
+		return personDAO.getPersonsBySchool(school);
+	}
+	
 	public int getCount(String school){
 		return personDAO.getCount(school);
 	}

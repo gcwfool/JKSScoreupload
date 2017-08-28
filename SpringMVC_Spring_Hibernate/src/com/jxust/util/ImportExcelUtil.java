@@ -209,7 +209,7 @@ public class ImportExcelUtil {
 			Row row1 = sheet.createRow((short) i);
 			// 在row行上创建一个方格
 			for (short j = 0; j < keys.length; j++) {
-				if(keys[j].equals("name")) {
+				if(keys[j].equals("name") || keys[j].equals("school")) {
 					Cell cell = row1.createCell(j);
 					cell.setCellValue(list.get(i).get(keys[j]) == null ? " " : list
 							.get(i).get(keys[j]).toString());

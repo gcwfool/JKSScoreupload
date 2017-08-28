@@ -35,8 +35,11 @@ public class PersonDAO {
 	 * @param school
 	 * @return
 	 */
-	public Person getPersonBySchool(String school) {
-		return (Person) this.getSession().createQuery("from Person where school=?").setParameter(0, school).uniqueResult();
+	@SuppressWarnings("unchecked")
+	public List<Person> getPersonsBySchool(String school) {
+		String queryStr = "from Person where school=?";
+		Query query = this.getSession().createQuery(queryStr).setParameter(0, school);
+		return query.list();
 	}
 	
 	@SuppressWarnings("unchecked")
