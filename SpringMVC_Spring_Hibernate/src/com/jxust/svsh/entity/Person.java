@@ -19,6 +19,7 @@ public class Person {
 
 	private int id;// 主键id
 	private String name;// 姓名
+	private String school;
 	private int chinese;
 	private int math;
 	private int english;
@@ -39,12 +40,13 @@ public class Person {
 		super();
 	}
 	
-	public Person(int id, String name, int chinese, int math, int english,
+	public Person(int id, String name, String school, int chinese, int math, int english,
 			int physics, int chemistry, int sxpd, int history, int geography,
 			int biology) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.school = school;
 		this.chinese = chinese;
 		this.math = math;
 		this.english = english;
@@ -75,6 +77,15 @@ public class Person {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Column(name = "school", nullable = false, length = 32)
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
 	}
 
 	@Column(name = "chinese", nullable = false)
@@ -160,7 +171,7 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", chinese=" + chinese + ", math=" + math + 
+		return "Person [id=" + id + ", name=" + name + ", school=" + school + ", chinese=" + chinese + ", math=" + math + 
 				", english=" + english + ", physics=" + physics + ", chemistry=" + chemistry
 				+ ", sxpd=" + sxpd + ", history=" + history + ", geography=" + geography + ", biology="
 				+ biology +"]";

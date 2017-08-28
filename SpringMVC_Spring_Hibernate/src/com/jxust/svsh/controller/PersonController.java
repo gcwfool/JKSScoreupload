@@ -239,10 +239,10 @@ public class PersonController {
         boolean success = true;
         
         List<Object> first = listob.get(0);
-        if(first.size() < 10 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("语文") || 
-        		!first.get(3).equals("数学") || !first.get(4).equals("英语") || !first.get(5).equals("物理") || 
-        		!first.get(6).equals("化学") || !first.get(7).equals("思想品德") || !first.get(8).equals("历史") || 
-        		!first.get(9).equals("地理") || !first.get(10).equals("生物") ) {
+        if(first.size() < 10 || !first.get(0).equals("学号") || !first.get(1).equals("姓名") || !first.get(2).equals("学校") || !first.get(3).equals("语文") || 
+        		!first.get(4).equals("数学") || !first.get(5).equals("英语") || !first.get(6).equals("物理") || 
+        		!first.get(7).equals("化学") || !first.get(8).equals("思想品德") || !first.get(9).equals("历史") || 
+        		!first.get(10).equals("地理") || !first.get(11).equals("生物") ) {
         	model.addAttribute("msg", "首行标题格式错误，请参照模板");
         	return "scoreerror";
         }
@@ -255,15 +255,16 @@ public class PersonController {
             List<Object> lo = listob.get(i);  
             String id = String.valueOf(lo.get(0));
             String name = String.valueOf(lo.get(1));
-            String chinese = String.valueOf(lo.get(2));
-            String math = String.valueOf(lo.get(3));
-            String english = String.valueOf(lo.get(4));
-            String physics = String.valueOf(lo.get(5));
-            String chemistry = String.valueOf(lo.get(6));
-            String sxpd = String.valueOf(lo.get(7));
-            String history = String.valueOf(lo.get(8));
-            String geography = String.valueOf(lo.get(9));
-            String biology = String.valueOf(lo.get(10));
+            String school = String.valueOf(lo.get(2));
+            String chinese = String.valueOf(lo.get(3));
+            String math = String.valueOf(lo.get(4));
+            String english = String.valueOf(lo.get(5));
+            String physics = String.valueOf(lo.get(6));
+            String chemistry = String.valueOf(lo.get(7));
+            String sxpd = String.valueOf(lo.get(8));
+            String history = String.valueOf(lo.get(9));
+            String geography = String.valueOf(lo.get(10));
+            String biology = String.valueOf(lo.get(11));
             String errorMsg = "";
             if(id.length() != 7 || !Common.isNumeric(id)) {
             	errorMsg += "第" + (i + 1) + "行学号格式错误";
@@ -272,8 +273,13 @@ public class PersonController {
             }
             
             if(name == null || name.length() == 0) {
-            	System.out.println("第" + (i + 1) + "行名字不能为空");
             	errorMsg += "第" + (i + 1) + "行名字不能为空";
+            	errorMsg += "\n";
+            	success = false;
+            }
+            
+            if(school == null || school.length() == 0) {
+            	errorMsg += "第" + (i + 1) + "行学校不能为空";
             	errorMsg += "\n";
             	success = false;
             }
@@ -419,7 +425,7 @@ public class PersonController {
             }
 
             try {
-            	personService.addPerson(new Person(Integer.valueOf(id), name, Integer.valueOf(chinese), Integer.valueOf(math)
+            	personService.addPerson(new Person(Integer.valueOf(id), name, school,Integer.valueOf(chinese), Integer.valueOf(math)
             			, Integer.valueOf(english), Integer.valueOf(physics),Integer.valueOf(chemistry),Integer.valueOf(sxpd),
             			Integer.valueOf(history), Integer.valueOf(geography), Integer.valueOf(biology)));
             } catch (Exception e){
@@ -513,7 +519,7 @@ public class PersonController {
 					int his = random.nextInt(101);
 					int geo = random.nextInt(101);
 					int bio = random.nextInt(101);
-					Person person = new Person(id, name, chinese, math, eng, phy, che, sxpd, his, geo, bio);
+					Person person = new Person(id, name, "铁一中",chinese, math, eng, phy, che, sxpd, his, geo, bio);
 					personService.addPerson(person);
 					id++;
 				}
@@ -564,12 +570,12 @@ public class PersonController {
 	
 	@RequestMapping(value = "/details")
 	@ResponseBody
-	public Map<String,Object> selectByFy(int draw,int start,int length){
+	public Map<String,Object> selectByFy(int draw,int start,int length, String school){
         /*所需参数*/
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<Person> persons = personService.getPersonByPage(start, length);
-		int total = personService.getCount();
+		List<Person> persons = personService.getPersonByPage(start, length, school);
+		int total = personService.getCount(school);
 		map.put("recordsFiltered", total);
 		map.put("recordsTotal", total);
 		map.put("draw", draw);
@@ -588,6 +594,7 @@ public class PersonController {
 			Map<String, Object> mapValue = new HashMap<String, Object>();
 			mapValue.put("id", project.getId());
 			mapValue.put("name", project.getName());
+			mapValue.put("school", project.getSchool());
 			mapValue.put("chinese", project.getChinese());
 			mapValue.put("math", project.getMath());
 			mapValue.put("english", project.getEnglish());
@@ -609,9 +616,9 @@ public class PersonController {
 		// 填充projects数据
 		List<Person> projects = personService.getPersons();
 		List<Map<String, Object>> list = createExcelRecord(projects);
-		String columnNames[] = { "学号", "姓名", "语文", "数学", "英语", "物理", "化学", "思想品德", "历史"
+		String columnNames[] = { "学号", "姓名", "学校","语文", "数学", "英语", "物理", "化学", "思想品德", "历史"
 				, "地理", "生物"};// 列名
-		String keys[] = { "id", "name", "chinese", "math", "english", "physics", "chemistry", "sxpd"
+		String keys[] = { "id", "name", "schole", "chinese", "math", "english", "physics", "chemistry", "sxpd"
 				, "history", "geography", "biology"};// map中的key
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {

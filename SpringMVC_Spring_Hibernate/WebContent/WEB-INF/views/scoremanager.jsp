@@ -99,7 +99,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 	<form action="#" method="post" class="form-horizontal" style="margin-top: 20px; margin-left: 30px;">        
-
 	              <label class="control-label hlabel" style="width: 60px;">所属考试:</label>
 	              <div class="controls hcontrols" style="width:300px; margin-left:10px;">
 	                <select>
@@ -130,8 +129,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	              <label class="control-label hlabel" style="width: 60px;">所属学校:</label>
 	              <div class="controls hcontrols"  style="width:180px; margin-left: 10px;">
-	                <select>
-                   		<option value="0">请选择县区</option>
+	                <select id="selectschool">
+                   		<option value="0">请选择学校</option>
                         <option value="2">十二中</option>
                         <option value="18">四十五中</option>
                         <option value="40">铁一中</option>
@@ -155,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 			      <div id="search" class="controls hcontrols" style="margin-left: 30px;">
-			        <button type="submit" class="btn btn-info" title="查询"><i class="fa fa-search fa-white"></i>查询</button>
+			        <button  type="button" class="btn btn-info" title="查询" onclick="search()"><i class="fa fa-search fa-white"></i>查询</button>
 			      </div>
 
 	</form> 
@@ -179,6 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
                   <th>学号</th>
                   <th>姓名</th>
+                  <th>学校</th>
                   <th>语文</th>
                   <th>数学</th>
                   <th>英语</th>
@@ -555,7 +555,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../js/jquery.peity.min.js"></script> 
 
 <script type="text/javascript">
-
+    var school = "请选择学校";
 	var tables = $("#mydatatable").dataTable({
 
 					"bJQueryUI": true,
@@ -578,7 +578,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        param.draw = d.draw;
 	                        param.start = d.start;
 	                        param.length = d.length;
-	                        
+	                        param.school = school;
                         	return param;//自定义需要传递的参数。
 			       		},
 			    	},
@@ -588,6 +588,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    		{"data": null},
 	               		{"data": 'id' }, 
 	               		{"data": 'name' },
+	               		{"data": 'school' },
   	                    {"data": 'chinese'},
   	                    {"data": 'math'},
   	                  	{"data": 'english'},
@@ -832,11 +833,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    	alert("服务器出错");
 		                    }
 		                });
-				}				
-
-
-
-
+				}	
+				
+				function search(){
+					school = $('#selectschool option:selected').text();
+					$("#mydatatable").DataTable().ajax.reload();
+				}
 </script>
 
 

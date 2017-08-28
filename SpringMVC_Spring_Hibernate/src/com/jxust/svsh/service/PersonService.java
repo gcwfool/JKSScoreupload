@@ -34,8 +34,8 @@ public class PersonService {
 		return personDAO.getPersonById(id);
 	}
 	
-	public List<Person> getPersonByPage(int start, int pageSize){
-		return personDAO.getPersonByPage(start, pageSize);
+	public List<Person> getPersonByPage(int start, int pageSize, String school){
+		return personDAO.getPersonByPage(start, pageSize, school);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class PersonService {
 		return personDAO.getPersons();
 	}
 	
-	public int getCount(){
-		return personDAO.getCount();
+	public int getCount(String school){
+		return personDAO.getCount(school);
 	}
 }

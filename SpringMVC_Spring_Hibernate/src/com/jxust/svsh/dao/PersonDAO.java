@@ -30,22 +30,48 @@ public class PersonDAO {
 		return (Person) this.getSession().createQuery("from Person where id=?").setParameter(0, id).uniqueResult();
 	}
 	
+	/**
+	 * 根据学校查询
+	 * @param school
+	 * @return
+	 */
+	public Person getPersonBySchool(String school) {
+		return (Person) this.getSession().createQuery("from Person where school=?").setParameter(0, school).uniqueResult();
+	}
+	
 	@SuppressWarnings("unchecked")
-	public List<Person> getPersonByPage(int start, int pageSize){	
-		String queryStr = "from Person";
-		Query query = this.getSession().createQuery(queryStr);		
+	public List<Person> getPersonByPage(int start, int pageSize, String school){
+		String queryStr = "";
+		Query query = null;
+		if(!school.equals("请选择学校")) {
+			queryStr = "from Person where school=?";
+			query = this.getSession().createQuery(queryStr).setParameter(0, school);
+		} else {
+			queryStr = "from Person";
+			query = this.getSession().createQuery(queryStr);
+		}
+				
 		query.setFirstResult(start) ;
 		query.setMaxResults(pageSize); 
 		
 		return query.list();
 	}
 	
-	public int getCount(){
-		int count=((Long) this.getSession()
-                .createQuery( "select count(*) from Person").iterate().next()).intValue();
+	public int getCount(String school){
+		String queryStr = "select count(*) from Person where school=?";
+		int count = 0;
+		if(!school.equals("请选择学校")) {
+			queryStr = "select count(*) from Person where school=?";
+			count=((Long) this.getSession()
+	                .createQuery(queryStr).setParameter(0, school).iterate().next()).intValue();
+		} else {
+			queryStr = "select count(*) from Person";
+			count=((Long) this.getSession()
+	                .createQuery(queryStr).iterate().next()).intValue();
+		}
+		
         return count;
 	}
-	
 	
 	/**
 	 * 添加
