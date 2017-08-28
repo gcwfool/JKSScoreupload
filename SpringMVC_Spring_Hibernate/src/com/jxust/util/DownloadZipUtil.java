@@ -27,7 +27,7 @@ public class DownloadZipUtil {
 	
 	public static void zipFile(BufferedInputStream bis, String name,ZipOutputStream outputstream) throws IOException, ServletException {
         try { 
-                    ZipEntry entry = new ZipEntry(name + ".xls");
+                    ZipEntry entry = new ZipEntry(name + "/" + name + ".xls");
                     outputstream.putNextEntry(entry);
 
                     final int MAX_BYTE = 10 * 1024 * 1024; // 最大的流为10M
