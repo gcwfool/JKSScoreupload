@@ -67,8 +67,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          return true;  
       }  
 	 
-		function download() {
-			var url = "exportZip.do";
+		function downloadRecords(){
+
+			var em = $("#exportmode").val();
+			var url = "";
+			if(em == 1){
+				url = "exportZip.do";
+			}else if(em == 2){
+				url = "export.do";
+			}
+
+			// var url = "exportZip.do";
 			window.open(url);
 		}
 
@@ -96,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	<p>              
               <button class="btn btn-primary" onclick="showaddmodal()"> <i class="fa fa-plus"></i> 新增</button>
               <button class="btn btn-success"  data-toggle="modal" data-target="#fileuploadModal"><i class="fa fa-upload"> </i> 导入</button>
-              <button class="btn btn-info" onclick="download()"><i class="fa fa-share"> </i> 导出</button>
+              <button class="btn btn-info" data-toggle="modal" data-target="#exportModal"><i class="fa fa-share"> </i> 导出</button>
               <button class="btn btn-danger" onclick="deleterows()"><i class="fa fa-times"> </i> 删除</button>
             </p>
 
@@ -358,6 +367,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                <input class="required" style="width: 80px;" type="Text" name="name" id="name" title = "请输入姓名" placeholder="请输入姓名">
 				              </div>
 
+				              <label class="control-label hlabel" style="width: 60px;">学校:</label>
+				              <div class="controls"  style="width:400px; margin-bottom: 10px; margin-left: 70px;">
+				                <input class="required" style="width: 80px;" type="Text" name="school" id="school" title = "请输入学校" placeholder="请输入学校">
+				              </div>
+
 				              <label class="control-label hlabel" style="width: 60px;">语  文:</label>
 				              <div class="controls"  style="width:400px; margin-left: 70px;">
 				                <input class="required" style="width: 80px;" type="Text" name="chinese" id="chinese" title = "请输入语文成绩" value="0">
@@ -459,6 +473,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <input name = "name"  type="text"  value="">
                 </div>
 
+                <label class="control-label hlabel" style="width: 60px;">学校:</label>
+                <div class="controls"  style="width:80px; margin-left: 70px;">
+                  <input name = "school"  type="text"  value="">
+                </div>
 
                 <label class="control-label hlabel" style="width: 60px;">语文:</label>
                 <div class="controls"  style="width:80px; margin-left: 70px;">
@@ -533,6 +551,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
 </div>
 
+
+
+
+
+<div class="modal hide fade" id="exportModal">
+
+    <div class="modal-body" style="max-height: 600px;">
+
+
+      <div id = "content">
+        <div id = "content-header">
+          <h1 style="text-align: center;"><i class="fa fa-edit"></i>
+          导出成绩
+          </h1>
+
+        </div>
+
+        <div class="widget-box">
+                  
+          <div class="widget-content" style = "height: 50px;">
+			
+					<label class="control-label hlabel" style="width: 60px;">导出模式:</label>
+	              <div class="controls hcontrols"  style="width:180px; margin-left: 10px;">
+	                <select id="exportmode">
+                        <option value="1">导出压缩文件</option>
+                        <option value="2">导出excel</option>
+	                </select>
+			
+
+
+
+
+	              </div>
+
+
+
+                
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+      </div>
+
+  <div class="modal-footer">
+     <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <a href="#" class="btn btn-primary" onclick= "downloadRecords()">导出</a>
+  </div>
+</div>
 
 
 
@@ -668,6 +743,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		          // $("input[name=id]").val(data.id)
 		          $("#editform input[name=id]").attr("value", data.id);
 		          $("#editform input[name=name]").attr("value", data.name);
+		          $("#editform input[name=school]").attr("value", data.school);
 		          $("#editform input[name=chinese]").attr("value", data.chinese);
 		          $("#editform input[name=math]").attr("value", data.math);
 		          $("#editform input[name=english]").attr("value", data.english);
@@ -978,22 +1054,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});		        	        			
 
 
-/*				$(function(){
-					$("#addform").validate({
-						rules:{
-							id:{
-								required:true,
-								minlength:4
-							},
-						message:{
-							id:{
-								required:"hehhe",
-								minlength:"hahha"
-							}
-						}
-						}
-					});
-				});	*/
+
 </script>
 
 
