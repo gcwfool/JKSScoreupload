@@ -74,13 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                   <li>
 
-                     <i class="fa fa-minus-circle fa-lg"></i> <span><i class="fa fa-users fa-lg"></i> Parent</span>
+                     <i class="fa fa-minus-circle fa-lg"></i> <span><i class="fa fa-users fa-lg"></i> 柳州市教科所</span>
 
                     <ul>
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#"><i class="fa fa-user-o fa-lg"></i> child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#"><i class="fa fa-user fa-lg"></i> 鱼峰区</a></span> 
 
 
 
@@ -88,19 +88,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#"><i class="fa fa-user fa-lg"></i> 城中区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -119,19 +119,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -149,19 +149,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -169,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -179,19 +179,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                        <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -209,19 +209,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -239,19 +239,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -259,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -269,19 +269,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                       <li>
 
-                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">child</a></span> 
+                        <i class="fa fa-minus-circle fa-lg"></i> <span> <a href="#">柳南区</a></span> 
 
                         <ul>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                           </li>
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span>
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span>
 
                             
 
@@ -289,7 +289,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                           <li>
 
-                            <span><i class="fa fa-leaf fa-lg"></i> Grand Child</span> 
+                            <span><i class="fa fa-user-o fa-lg"></i> 铁一中</span> 
 
                           </li>
 
@@ -422,54 +422,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <thead>
                 <tr>
                   <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
-                  <th>Column name</th>
-                  <th>Column name</th>
-                  <th>Column name</th>
-                  <th>Column name</th>
+                  <th>登录账号</th>
+                  <th>用户部门</th>
+                  <th>所属部门</th>
+                  <th>角色</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>Row 1</td>
-                  <td>Row 2</td>
-                  <td>Row 3</td>
-                  <td>Row 4</td>
+                  <td>czq</td>
+                  <td>城中区</td>
+                  <td>城中区</td>
+                  <td>默认角色，县区教研室，学校上传员</td>
                 </tr>
               </tbody>
             </table>
@@ -511,17 +511,17 @@ $(function(){
 
     $('.tree li.parent_li > i').on('click', function (e) {
 
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        var 柳南区ren = $(this).parent('li.parent_li').find(' > ul > li');
 
-        if (children.is(":visible")) {
+        if (柳南区ren.is(":visible")) {
 
-            children.hide('fast');
+            柳南区ren.hide('fast');
 
             $(this).attr('title', 'Expand this branch').addClass('fa-plus-circle').removeClass('fa-minus-circle');
 
         } else {
 
-            children.show('fast');
+            柳南区ren.show('fast');
 
             $(this).attr('title', 'Collapse this branch').addClass('fa-minus-circle').removeClass('fa-plus-circle');
 
