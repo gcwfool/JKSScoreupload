@@ -22,7 +22,8 @@
         <property name="driverClass" value="${jdbc.driverClass}"/>        
         <property name="jdbcUrl" value="${jdbc.url}"/>        
         <property name="user" value="${jdbc.username}"/>        
-        <property name="password" value="${jdbc.password}"/>        
+        <property name="password" value="${jdbc.password}"/> 
+        <property name="maxIdleTime" value="3600"/>  
     </bean>
      <!-- 配置hibernate 相关属性--> 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -34,7 +35,6 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.format_sql">true </prop>  
-                <prop key="hibernate.autoReconnect">true</prop> 
                 <!-- 
 			                它包含4个属性: 
 			    * create : 会根据你的model类来生成表,但是每次运行都会删除上一次的表,重新生成表,哪怕2次没有任何改变 
