@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jxust.svsh.dao.PersonDAO;
+import com.jxust.svsh.dao.PersonDao;
 import com.jxust.svsh.entity.Person;
 
 @Transactional
@@ -16,7 +16,7 @@ import com.jxust.svsh.entity.Person;
 public class PersonService {
 
 	@Autowired
-	public PersonDAO personDAO;
+	public PersonDao personDAO;
 	
 	/**
 	 * 添加

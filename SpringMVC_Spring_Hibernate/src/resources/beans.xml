@@ -57,7 +57,6 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
                                               
 	<!-- 开启事务注解 -->
 	<tx:annotation-driven transaction-manager="transactionManager"  />
