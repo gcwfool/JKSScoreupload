@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="modal hide fade" id="addkaoshiModal">
 
-    <div class="modal-body" style="max-height: 600px;">
+    <div class="modal-body" style="max-height: 380px;">
 
 
       <div id = "content" >

@@ -113,19 +113,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div> 
 
 
-	<form action="#" method="post" class="form-horizontal" style="margin-top: 20px; margin-left: 30px;">        
-	              <label class="control-label hlabel" style="width: 60px;">所属考试:</label>
-	              <div class="controls hcontrols" style="width:300px; margin-left:10px;">
-	                <select>
+	<form action="#" method="post" class="form-horizontal container-fluid" style="margin-top: 1%;">        
+		<div class="row-fluid">
+	             <!-- <div class="control-group" > -->
+
+<!-- 	            <table id = "inlinetable">
+	            	<tbody>
+	            		<tr>
+	            			<td> -->
+	            				
+	            <div class="span3">
+	              <label class="control-label hlabel" style="width: 60px; margin-left: 0px">所属考试:</label>
+	              <!-- <span class="badge hlabel">所属考试:</span> -->
+	              <div class="controls hcontrols" style="width:70%; margin-left: 0px; border-radius: 5px;">
+	                <select >
                     <option value="0">请选择考试</option>
                         <option value="48">2016-2017学年度下学期七年级期末质量抽测</option>
                         <option value="49">2016-2017学年度下学期八年级期末质量抽测</option>
 
 	                </select>
 	              </div>
+	            </div>
 
+	            <div class="span2">
 	              <label class="control-label hlabel" style="width: 60px;">所属县区:</label>
-	              <div class="controls hcontrols"  style="width:180px; margin-left: 10px;">
+	              <div class="controls hcontrols"  style="width:60%; margin-left: 0px;">
 	                <select>
                    		<option value="0">请选择县区</option>
                         <option value="2">城中区</option>
@@ -140,10 +152,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <option value="302">鹿寨县</option>
 	                </select>
 	              </div>
+	            </div>
 
-
+	            <div class="span2">
 	              <label class="control-label hlabel" style="width: 60px;">所属学校:</label>
-	              <div class="controls hcontrols"  style="width:180px; margin-left: 10px;">
+	              <div class="controls hcontrols"  style="width:60%; margin-left: 0px;">
 	                <select id="selectschool">
                    		<option value="0">请选择学校</option>
                         <option value="2">十二中</option>
@@ -155,22 +168,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <option value="186">融安县</option>
 	                </select>
 	              </div>
+	             </div>
 
-
-	              <label class="control-label hlabel" style="width: 80px;">学生姓名:</label>
-	              <div class="controls hcontrols"  style="width:80px; margin-left: 10px;">
+	            <div class="span2">
+	              <label class="control-label hlabel" style="width: 60px;">学生姓名:</label>
+	              <div class="controls hcontrols"  style="width:60%; margin-left: 0px;">
 	                <input style="width: 80px;" type="Text" name="studentname" placeholder="请输入姓名">
 	              </div>
+	            </div>
 
-	              <label class="control-label hlabel" style="width: 80px;margin-left: 20px;">学生编号:</label>
-	              <div class="controls hcontrols"  style="width:80px; margin-left: 10px;">
+	            <div class="span2">
+	              <label class="control-label hlabel" style="width: 60px;">学生编号:</label>
+	              <div class="controls hcontrols"  style="width:60%; margin-left: 0px;">
 	                <input style="width: 80px;" type="Text" name="studentid"  title = "请输入编号" placeholder="请输入编号">
 	              </div>
+	            </div>
 
-
-			      <div id="search" class="controls hcontrols" style="margin-left: 30px;">
-			        <button  type="button" class="btn btn-info" title="查询" onclick="search()"><i class="fa fa-search fa-white"></i>查询</button>
+				<div class="span1">
+			      <div id="search" class="controls hcontrols" style="margin-left: 0px;">
+			        <button  type="button" style="float: left;width: 80px;" class="btn btn-info" title="查询" onclick="search()"><i class="fa fa-search fa-white"></i>查询</button>
 			      </div>
+			    </div>
 
 	</form> 
 
@@ -287,7 +305,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="modal hide fade" id="addModal"">
 
-	  <div class="modal-body" style="max-height: 500px;">
+	  <div class="modal-body" style="max-height: 380px;">
 
 
 			<div id = "content">
@@ -446,7 +464,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="modal hide fade" id="editModal">
 
-    <div class="modal-body" style="max-height: 600px;">
+    <div class="modal-body" style="max-height: 380px;">
 
 
       <div id = "content">
@@ -557,7 +575,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="modal hide fade" id="exportModal">
 
-    <div class="modal-body" style="max-height: 600px;">
+    <div class="modal-body" style="max-height: 380px;">
 
 
       <div id = "content">

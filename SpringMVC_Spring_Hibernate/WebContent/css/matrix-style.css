@@ -172,7 +172,7 @@ hr{ border-top-color:#dadada;}
 	display: block;
 	float: left;
 	position: relative;
-	width: 220px;
+	width: 10%;
 	z-index: 16;  
 }
 
@@ -206,7 +206,7 @@ hr{ border-top-color:#dadada;}
 	margin: 0px 0 0;
 	padding: 0;
 	position: absolute;
-	width: 220px;
+	width: 100%;
 }
 #sidebar > ul > li {
 	display: block;
@@ -264,7 +264,7 @@ hr{ border-top-color:#dadada;}
 /* Content */
 #content {
 	background: none repeat scroll 0 0 #eeeeee;
-	margin-left: 220px;
+	margin-left: 10%;
 	margin-right: 0;
 	position: relative;
 	min-height:100%;

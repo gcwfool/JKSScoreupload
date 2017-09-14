@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <a href="#">
                     <i class="fa fa-book"></i> 
                     <span>资料管理</span> 
-                    <span class="label label-important">2</span>
+                   
                 </a>
                 <ul>
                     <li><a class="menu_a" link="kaoshiinfo" target= "#iframe-main"><i class="fa fa-caret-right"></i>考试信息</a></li>
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="#">
                     <i class="fa fa-cog"></i> 
                     <span>系统管理</span> 
-                    <span class="label label-important">4</span>
+                  
                 </a>
 				<ul>
                     <li><a class="menu_a" link="usermanager" target = "#iframe-main"><i class="fa fa-caret-right"></i> 用户管理</a></li>
